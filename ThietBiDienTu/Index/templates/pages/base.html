@@ -10,6 +10,39 @@
     <link rel="stylesheet" href="{% static '/themify-icons/themify-icons.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'bootstrap-4.3.1-dist/css/bootstrap.min.css' %}" type="text/css">
+    <style>
+          .search-form {
+        display: flex;
+        align-items: center;
+        float: right;
+        background-color: black;
+        border-radius: 5px;
+      
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .search-form input[type="text"] {
+        border: none;
+        outline: none;
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 5px;
+        flex: 1;
+    }
+    .search-form button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-left: 10px;
+    }
+    .search-form button:hover {
+        background-color: #0056b3;
+    }
+</style>
   </head> 
 
 <body> 
@@ -47,46 +80,16 @@
               <input type="text" name="q" placeholder="Tìm kiếm sản phẩm..." value="{{ request.GET.q }}">
               <button type="submit">Tìm kiếm</button>
           </form>
-            <style>
-              .search-form {
-            display: flex;
-            align-items: center;
-            float: right;
-            background-color: black;
-            border-radius: 5px;
-          
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .search-form input[type="text"] {
-            border: none;
-            outline: none;
-            padding: 8px;
-            font-size: 16px;
-            border-radius: 5px;
-            flex: 1;
-        }
-        .search-form button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-left: 10px;
-        }
-        .search-form button:hover {
-            background-color: #0056b3;
-        }
-            </style>
+            
             <!-- end search-->
         </div>
         <div class="header-second">
             <img width="230px" height="70px" src="{% static '/images/logo.png' %}" alt="Logo">
             <div class="section1">
-                <a href="/login"><i class="fa fa-user-o"></i> Đăng Nhập</a>
-                <a href="/register"><i class="ti-pencil"></i> Đăng Ký</a>
+                <a href="#"><i class="fa fa-user-o"></i>{{request.user}}</a>
+                <a href="{%url 'logout'%}"><i class="fa fa-sign-out"></i>Đăng xuất</a>
+                <a href="{%url 'login'%}"><i class="fa fa-user-o"></i> Đăng Nhập</a>
+                <a href="{%url 'register'%}"><i class="ti-pencil"></i> Đăng Ký</a>
                 <a href="#"><i class="ti-shopping-cart"></i> Giỏ Hàng</a>
             </div>
         </div>
@@ -139,7 +142,10 @@
   <div class="w3-container w3-teal">
     
   {% block content %} 
-          
+  {% endblock %} 
+  {% block login %} 
+  {% endblock %} 
+  {% block register %} 
   {% endblock %} 
   </div>
 </div>

@@ -1,10 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Import model
 
-from django.http import HttpResponse 
+from django.http import HttpResponse, JsonResponse
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+import json
 # Create your views here.
 #Đăng ký
 def register(request):
@@ -17,9 +20,23 @@ def register(request):
     context = {'form':form}
     return render(request, 'pages/register.html', context)
 
-def login(request):
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username = username, password = password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.info(request, 'Tài khoản hoặc mật khẩu không đúng!')
     context = {}
     return render(request, 'pages/login.html', context)
+def logoutPage(request):
+    logout(request)
+    return redirect('login')    
 
 # Thành viên
 def Member_list(request):
