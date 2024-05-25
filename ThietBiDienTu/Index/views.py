@@ -11,7 +11,12 @@ from django.http import HttpResponse
 #Đăng ký
 def register(request):
     context = {}
-    return render(request, 'page/Register.html', context)
+    return render(request, 'pages/register.html', context)
+
+def login(request):
+    context = {}
+    return render(request, 'pages/login.html', context)
+
 # Thành viên
 def Member_list(request):
     data={

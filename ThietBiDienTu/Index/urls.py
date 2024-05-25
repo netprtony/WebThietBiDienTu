@@ -10,5 +10,6 @@ urlpatterns = [
     path('loai_list/', views.Loai_list, name='loai_list'),
     path('product/<str:product_id>/', views.product_detail, name='product_detail'),
     path('search/', views.search_product, name='search_product'),
-    path('search/', views.register, name='register'),
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
 ] 
