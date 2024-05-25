@@ -1,5 +1,13 @@
 from django.db import models
+
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 # Create your models here.
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
 
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
@@ -23,7 +31,7 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=False)
     Category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=False, related_name='products')
     def __str__(self):
-        return f"{self.name} --- {self.Category}"
+        return f"{self.name} --- {self.Category} --- {self.price} --- {self.image} --- {self.rate} --- {self.numbersell}"
 
 class Member(models.Model):
     username = models.CharField(primary_key=True, max_length=50)

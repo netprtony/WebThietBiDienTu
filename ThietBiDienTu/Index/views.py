@@ -1,16 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 
 # Import model
-from .models import Product
-from .models import Member
-from .models import Customer
-from .models import Category
-from django.http import HttpResponse 
 
+from django.http import HttpResponse 
+from .models import *
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 #Đăng ký
 def register(request):
-    context = {}
+    form = CreateUserForm()
+    
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
     return render(request, 'pages/register.html', context)
 
 def login(request):
