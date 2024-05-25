@@ -1,0 +1,49 @@
+{% extends "pages/base.html" %} 
+{% block title %} 
+    Thiết bị điện tử
+{% endblock %} 
+
+{% block content %}
+{% load static %}
+{% load custom_filters %}
+<div class="container title-item" style="margin-top: 20px">
+  <h4 id="laptop" style="color:darkblue; font-weight: 400;">LapTop</h4>
+  <a href="https://cellphones.com.vn/laptop.html" style="color: grey;"><h6>Xem Thêm </h6></a>
+</div>
+
+<div class="container">
+  <div class="row" style="width: 1000px;">
+    {% for product in DM_SanPham %}
+      {% if product.image != null%}
+        {% with forloop.counter0|divisibleby:9 as new_row %}
+          {% if new_row and forloop.counter0 != 0 %}
+            </div>
+            <div class="row" style="width: 1000px;">
+          {% endif %}
+        {% endwith %}
+        <div class="col-md-4">
+          <div class="card" style="border: none; background-color: rgb(250, 250, 250);">
+            <a href="{% url 'product_detail' product.id %}">
+              <img src="{% static 'HinhAnh/' %}{{ product.image }}" class="card-img-top" alt="{{ product.image }}">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h5>
+              <p class="card-text">{{ product.price|intcomma_custom }} VND</p>
+              <p class="card-text">Giảm đến 750.000k khi mua online</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 days ago</small></p>
+              <div class="product-view-rating">
+                <div class="left">
+                  <i class="fa fa-star" aria-hidden="true" style="color:#ffc107"></i> 5({{ product.rate }})
+                </div>
+                <div class="right">
+                  <p>{{ product.numbersell }} Lượt Bán</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %} 
