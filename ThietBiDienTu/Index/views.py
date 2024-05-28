@@ -17,6 +17,7 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('login')    
     context = {'form':form}
     return render(request, 'pages/register.html', context)
 
@@ -79,4 +80,6 @@ def product_detail(request, product_id):
     # Retrieve the product object from the database
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'pages/ChiTietSanPham.html', {'product': product})
+
+
 

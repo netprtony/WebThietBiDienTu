@@ -10,7 +10,7 @@
   {% with counter=0 %}
   <div class="row" style="width: 1250px;">
     {% for product in DM_SanPham %}
-      {% if product.loai == 1 %}
+      {% if product.image != null %}
         {% if counter % 3 == 0 and counter != 0 %}
           </div>
           <div class="row" style="width: 1250px;">

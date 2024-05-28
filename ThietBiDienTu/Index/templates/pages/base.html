@@ -62,14 +62,10 @@
                     <i class="nav-arrow ti-angle-down"></i>
                     </a>
                     <ul class="subnav" style="z-index: 1;">
-                        <li><a href="{% url 'products' %}#laptop">Laptop</a></li>
-                        <li><a href="{% url 'products' %}#manhinh">Màn Hình</a></li>
-                        <li><a href="{% url 'products' %}#banphim">Bàn Phím</a></li>
-                        <li><a href="{% url 'products' %}#chuot">Chuột</a></li>
-                        <li><a href="{% url 'products' %}#tainghe">Tai Nghe</a></li>
-                        <li><a href="{% url 'products' %}#pc">PC</a></li>
-                        <li><a href="{% url 'products' %}#mic">Mic</a></li>
-                    </ul>
+                      {%for cate in Loai_list%}
+                        <li><a href="{% url '#' %}">{{cate.name}}</a></li>
+                      {%endfor%}
+                      </ul>
                 </li>
             </ul>
             <!-- end nav -->
@@ -88,7 +84,7 @@
             <div class="section1">
                 <a href="#"><i class="fa fa-user-o"></i>{{request.user}}</a>
                 <a href="{%url 'logout'%}"><i class="fa fa-sign-out"></i>Đăng xuất</a>
-                <a href="{%url 'login'%}"><i class="fa fa-user-o"></i> Đăng Nhập</a>
+                <a href="{%url 'login'%}"><i class="fa fa-user-o"></i>Đăng Nhập</a>
                 <a href="{%url 'register'%}"><i class="ti-pencil"></i> Đăng Ký</a>
                 <a href="#"><i class="ti-shopping-cart"></i> Giỏ Hàng</a>
             </div>
